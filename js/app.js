@@ -5,6 +5,7 @@ function drinkRecipe(name, ingredients, glass, image, category, liquor){
 	this.imageProperty = image;
 	this.category = category;
   this.baseLiquior = liquor;
+  this.match = 0;
 	this.percentMatch = 0;
 }
 
