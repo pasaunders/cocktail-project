@@ -7,8 +7,8 @@ function drinkRecipe(drinkName, ingredients, glass, image, category, liquor){
   this.baseLiquior = liquor;
   this.match = 0;
 	this.percentMatch = 0;
-	this.ingMatch = [];
-	this.ingMismatch = [];
+	this.ingMatch = [0];
+	this.ingMismatch = [0];
 }
 function ingredient(ingName, image, substitutes){
 	this.ingName = ingName;
@@ -28,7 +28,9 @@ var drinkArray = [  // This array holds objects for every drink ever entered int
     new drinkRecipe('Mimosa',[['champagne','1/3 cup'],['orange juice','1/3 cup'],['triple sec','1 tablespoon (optional)']],'flute','flute.jpg','cold','champagne')
   ];
 var ingArray = [ // This array holds objects for every ingredient the user has in their
-
+		new ingredient('vodka', 'img/vodka.jpg', ''),
+		new ingredient('rum', 'img/rum.jpg', ''),
+		new ingredient('whiskey', 'img/whiskey.jpg', '')
 ];
 
 function loadDrinks(){ // Adds all drinks stored in the database to the current instance.
@@ -40,14 +42,22 @@ function loadDrinks(){ // Adds all drinks stored in the database to the current 
   console.log("The firebase read failed: " + errorObject.code);
 	});
 };
-function loadIngredients(){ // Adds all ingredients stored in local-data to the current instance.
-
-};
 function updateDrinks(){ // For all drink obects, if drinkName is not present in the database, add it.
+	console.log('Updating the drinks database!')
 	drinksDir.set(drinkArray);
 };
+function loadIngredients(){ // Adds all ingredients stored in local-data to the current instance.
+	var tempArray = JSON.parse(localStorage.getItem('ingData'));
+	if (tempArray){
+		console.log('Getting ingredient info from local storage..')
+		var ingArray = tempArray;
+	} else {
+		console.log('No local ingredient data found!');
+	}
+};
 function updateIngredients(){ // For all ingredients, if ingredient is not present in local storage, add it.
-
+	console.log('Updating local ingredient data..')
+	localStorage.setItem('ingData', JSON.stringify(ingArray));
 };
 function delDrink(drinkName){ // Removes drink with a drinkName string matching the drinkName argument.
 
@@ -55,5 +65,8 @@ function delDrink(drinkName){ // Removes drink with a drinkName string matching 
 function delIngredient(ingName){ // Removes ingredient with a string matching ingName from the user's local data.
 
 };
-updateDrinks();
+
 loadDrinks();
+updateDrinks();
+loadIngredients();
+updateIngredients();
