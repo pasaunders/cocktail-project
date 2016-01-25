@@ -1,0 +1,26 @@
+.logoDiv {
+  display: flex;
+  justify-content: center;
+  width: "100%";
+  background-image: url("../img/logobg.jpg");
+  background-repeat: repeat-x;
+}
+.navDiv {
+  display: flex;
+  justify-content: center;
+  width: "100%";
+}
+.logoImg {
+}
+.navBar {
+  font-family: 'Quicksand', sans-serif;
+  color: #913915;
+}
+a {
+  text-decoration: none;
+  color: #913915;
+}
+a:hover {
+  text-decoration: none;
+  color: #e25b23;
+}
