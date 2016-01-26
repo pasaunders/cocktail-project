@@ -25,17 +25,70 @@ a:hover {
   color: #e25b23;
 }
 
+/*about us css*/
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
 
-.aboutUsLi {
+li {
+  float: left;
+  padding: 20px;
+  list-style-position: inside;
+  border: 1px solid black;
+}
 
+p {
+  font-size: 20px;
+  font-family: ;
 }
 
 .name {
-height: 100px;
-width: 200px;
+  font-family: sans-serif;
+  height: 100px;
+  width: 200px;
 }
 
-.aboutImg {
-height: 300px;
-width: 300px;
+/*flip css*/
+/* entire container, keeps perspective */
+.aboutUsLi {
+  perspective: 1000;
+}
+  /* flip the pane when hovered */
+  .aboutUsLi:hover, .aboutUsLi.hover {
+    transform: rotateY(180deg);
+  }
+
+.aboutUsLi, .front, .back {
+  width: 300px;
+  height: 300px;
+}
+
+/* flip speed goes here */
+.aboutUsLi {
+  transition: 0.9s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
 }
