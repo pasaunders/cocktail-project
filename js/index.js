@@ -1,5 +1,11 @@
 'use strict';
 
-function enterIngredient() {
-  document.getElementById('id') //id to be determined
+var submitIngredients = document.getElementById('submitIngredients');
+submitIngredients.addEventListener('submit', enterIngredientSubmit);
+
+function enterIngredientSubmit(event) {
+  console.log(event);
+  event.preventDefault();
+  var ingredientList = event.split(',');
+  console.log(ingredientList);
 }
