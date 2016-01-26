@@ -7,8 +7,8 @@ function drinkRecipe(drinkName, ingredients, glass, image, category, liquor){
   this.baseLiquior = liquor;
   this.match = 0;
 	this.percentMatch = 0;
-	this.ingMatch = [0];
-	this.ingMismatch = [0];
+	this.ingMatch = [];
+	this.ingMismatch = [];
 }
 function ingredient(ingName, image, substitutes){
 	this.ingName = ingName;
@@ -44,7 +44,22 @@ function loadDrinks(){ // Adds all drinks stored in the database to the current 
 };
 function updateDrinks(){ // For all drink obects, if drinkName is not present in the database, add it.
 	console.log('Updating the drinks database!')
-	drinksDir.set(drinkArray);
+	base.once("value", function(snapshot){
+		var tempObj = snapshot.val(); // Puts data from the firebase into an object
+		var match = false; // Haven't found a match for the drink yet, so this is false
+		drinkArray.forEach(function(drink){ // For each of the user's drinks
+			for (var cloudDrink in tempObj.drinks){ // For each drink in the firebase
+				if (drink.drinkName === tempObj.drinks[cloudDrink].drinkName){match = true;} // If there's a match, set match = true
+			}
+			if (match){ // if maych is true, it matched one of the drinks in the database
+				console.log(drink.drinkName + ' is already in the database!') // and so already exists
+			} else { // otherwise, this must be a new drink
+				console.log('User submitted a new drink: ' + drink.drinkName + ', adding it to the database.');
+				drinksDir.push(drink); // so add it to the database
+			}
+			match = false; // reset match before returning to the drinkArray forEach
+		})
+	})
 };
 function loadIngredients(){ // Adds all ingredients stored in local-data to the current instance.
 	var tempArray = JSON.parse(localStorage.getItem('ingData'));
@@ -59,14 +74,34 @@ function updateIngredients(){ // For all ingredients, if ingredient is not prese
 	console.log('Updating local ingredient data..')
 	localStorage.setItem('ingData', JSON.stringify(ingArray));
 };
-function delDrink(drinkName){ // Removes drink with a drinkName string matching the drinkName argument.
-
+function delDrink(drinkID){ // Removes drink with a drinkName string matching the drinkName argument.
+	var tempArray = drinkArray
+	base.once("value", function(snapshot){
+		var tempObj = snapshot.val();
+		for (var cloudDrink in tempObj.drinks){
+			if (drinkID === tempObj.drinks[cloudDrink].drinkName){
+				console.log('Deleting ' + drinkID + ' from the firebase..')
+				delete tempObj.drinks[cloudDrink];
+				base.set(tempObj);
+			}
+		}
+	})
+	drinkArray.forEach(function(drink, indexNum){
+		if (drinkID === drink.drinkName){
+			console.log('Deleting ' + drinkID + ' from the drinks array..')
+			drinkArray.splice(indexNum, 1);
+			console.log(drinkArray);
+		}
+	})
 };
+
 function delIngredient(ingName){ // Removes ingredient with a string matching ingName from the user's local data.
-
 };
 
+// drinksDir.set(drinkArray);
 // loadDrinks();
 // updateDrinks();
 // loadIngredients();
 // updateIngredients();
+
+// delDrink('Screwdriver');
