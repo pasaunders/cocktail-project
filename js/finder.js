@@ -67,19 +67,40 @@ function expandRecipe (sortedResults){
   }
 }
 function handleRecipe(){
-  if(document.getElementById('recipe') && this.childElementCount >=4){
+  var num = this.id.match(/\d+/);
+  console.log(document.getElementById('recipe'+num));
+  if(document.getElementById('recipe'+num) && this.childElementCount >=4){
     var removeEl = this;
+    console.log(removeEl);
     removeEl.removeChild(removeEl.lastChild);
   }
   else{
     var divEl = document.createElement('div');
-    divEl.setAttribute('id','recipe');
+    divEl.setAttribute('id','recipe'+num);
+    divEl.className += 'recipe';
     this.appendChild(divEl);
+    displayRecipe(num)
   }
 }
 
+function displayRecipe(num){
+  var recipeEl = document.getElementById('recipe'+num)
+  var h5El = document.createElement('h5');
+  h5El.textContent = drinkArray[sortRes[num][0]].drinkName;
+  recipeEl.appendChild(h5El);
+  var ulEl = document.createElement('ul');
+  for(var i = 0; i < drinkArray[sortRes[num][0]].ingredients.length; i++){
+    var liEl = document.createElement('li')
+    liEl.textContent = drinkArray[sortRes[num][0]].ingredients[i][0] + ': ' + drinkArray[sortRes[num][0]].ingredients[i][1];
+    ulEl.appendChild(liEl);
+  }
+  recipeEl.appendChild(ulEl);
+}
+
+
+
 
 compareIngredients(userIngredients, drinkArray);
-var sortedResults = sortByMatch(drinkArray);
-displayResults(sortedResults,drinkArray);
-expandRecipe(sortedResults);
+var sortRes = sortByMatch(drinkArray);
+displayResults(sortRes,drinkArray);
+expandRecipe(sortRes);
