@@ -66,7 +66,7 @@ function delIngredient(ingName){ // Removes ingredient with a string matching in
 
 };
 
-loadDrinks();
-updateDrinks();
-loadIngredients();
-updateIngredients();
+// loadDrinks();
+// updateDrinks();
+// loadIngredients();
+// updateIngredients();
