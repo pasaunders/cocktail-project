@@ -79,7 +79,7 @@ function delDrink(drinkID){ // Removes drink with a drinkName string matching th
 	base.once("value", function(snapshot){
 		var tempObj = snapshot.val();
 		for (var cloudDrink in tempObj.drinks){
-			if (drinkID === tempObj.drinks[cloudDrink].drinkName){
+			if (drinkID.toLowerCase() === tempObj.drinks[cloudDrink].drinkName.toLowerCase()){
 				console.log('Deleting ' + drinkID + ' from the firebase..')
 				delete tempObj.drinks[cloudDrink];
 				base.set(tempObj);
@@ -87,7 +87,7 @@ function delDrink(drinkID){ // Removes drink with a drinkName string matching th
 		}
 	})
 	drinkArray.forEach(function(drink, indexNum){
-		if (drinkID === drink.drinkName){
+		if (drinkID.toLowerCase() === drink.drinkName.toLowerCase()){
 			console.log('Deleting ' + drinkID + ' from the drinks array..')
 			drinkArray.splice(indexNum, 1);
 			console.log(drinkArray);
@@ -97,7 +97,7 @@ function delDrink(drinkID){ // Removes drink with a drinkName string matching th
 
 function delIngredient(ingID){ // Removes ingredient with a string matching ingName from the user's local data.
 	ingArray.forEach(function(ingredient, indexNum){
-		if (ingID === ingredient.ingName){
+		if (ingID.toLowerCase() === ingredient.ingName.toLowerCase()){
 			ingArray.splice(indexNum, 1);
 			console.log('Deleting ' + ingID + ' from local storage..')
 		}
@@ -111,5 +111,5 @@ function delIngredient(ingID){ // Removes ingredient with a string matching ingN
 // loadIngredients();
 // updateIngredients();
 
-// delDrink('Screwdriver');
-// delIngredient('whiskey');
+// delDrink('screwdRiver');
+// delIngredient('wHIskey');
