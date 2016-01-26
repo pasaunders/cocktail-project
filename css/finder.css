@@ -1,0 +1,8 @@
+#match {
+  color: green;
+  font-style: bold;
+}
+#mismatch {
+  color: red;
+  font-style: bold;
+}
