@@ -16,12 +16,9 @@ function compareIngredients(ingredients,drinks){
             drinks[i].match += 1;
             drinks[i].ingMatch.push(drinks[i].ingredients[k][0]);
             count += 1;
-            console.log('true ' + count + drinks[i].ingredients[k][0])
           } else if(k > j && drinks[i].ingMismatch.indexOf(drinks[i].ingredients[k][0]) === -1){
-            console.log(drinks[i].ingredients.length);
             drinks[i].ingMismatch.push(drinks[i].ingredients[k][0]);
             count += 1;
-            console.log('false ' + count + drinks[i].ingredients[k][0])
           }
         }
         drinks[i].percentMatch = drinks[i].match / drinks[i].ingredients.length;
@@ -43,13 +40,15 @@ function sortByMatch(drinks){
 
 function displayResults(sortedResults,drinks){
   var drinkDisplay = document.getElementById('drinkResults');
-  var resultArticle = document.createElement('article');
   for (var i =0; i < sortedResults.length; i++){
+    var resultArticle = document.createElement('article');
     resultArticle.setAttribute('id', 'result' + i);
     drinkDisplay.appendChild(resultArticle);
     var drinkItems = document.getElementById('result'+i);
     var imageEl = document.createElement('img');
+    console.log(test);
     var headingEl = document.createElement('h4');
+    headingEl.setAttribute('id','images'+i);
     var matchEl = document.createElement('p');
     var mismatchEl = document.createElement('p');
     matchEl.setAttribute('id', 'match');
@@ -59,7 +58,8 @@ function displayResults(sortedResults,drinks){
     imageEl.src='img/'+ drinks[sortedResults[i][0]].imageProperty;
     headingEl.textContent = drinks[sortedResults[i][0]].drinkName;
     drinkItems.appendChild(headingEl);
-    drinkItems.appendChild(imageEl);
+    var test = document.getElementById('images'+i);
+    test.appendChild(imageEl);
     drinkItems.appendChild(matchEl);
     drinkItems.appendChild(mismatchEl);
   }

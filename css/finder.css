@@ -1,8 +1,28 @@
+article {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+img{
+  display:block;
+}
+#drinkImage{
+  width: 25%;
+  text-align: center;
+}
 #match {
   color: green;
   font-style: bold;
+  display: inline;
+  justify-content: space-around;
+  text-align: left;
+  width: 15%;
 }
 #mismatch {
   color: red;
   font-style: bold;
+  display: inline;
+  justify-content: space-around;
+  text-align: left;
+  width: 15%;
 }
