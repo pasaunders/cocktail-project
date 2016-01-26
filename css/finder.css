@@ -26,3 +26,10 @@ img{
   text-align: left;
   width: 15%;
 }
+#recipe {
+  flex-direction: column-reverse;
+  align-items: baseline;
+  height: 200px;
+  width: 20%;
+  border: 5px black solid;
+}

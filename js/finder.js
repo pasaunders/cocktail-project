@@ -1,7 +1,5 @@
 'use strict';
-
 var userIngredients = ['Orange juice','Vodka','Whiskey'];
-
 
 function compareIngredients(ingredients,drinks){
   for(var l; l < drinks.length; l++){
@@ -24,11 +22,7 @@ function compareIngredients(ingredients,drinks){
         drinks[i].ingMismatch.push(drinks[i].ingredients[0][0]);
       }
   }
-  return drinks;
 }
-var drinks = compareIngredients(userIngredients, drinkArray);
-
-var sortedResults = sortByMatch(drinkArray);
 
 function sortByMatch(drinks){
   var drinkSort = [];
@@ -64,4 +58,28 @@ function displayResults(sortedResults,drinks){
     drinkItems.appendChild(mismatchEl);
   }
 }
+
+function expandRecipe (sortedResults){
+  var recipe = [];
+  for(var i = 0; i < sortedResults.length; i++){
+    recipe.push(document.getElementById('result'+i));
+    recipe[i].addEventListener('click', handleRecipe)
+  }
+}
+function handleRecipe(){
+  if(document.getElementById('recipe') && this.childElementCount >=4){
+    var removeEl = this;
+    removeEl.removeChild(removeEl.lastChild);
+  }
+  else{
+    var divEl = document.createElement('div');
+    divEl.setAttribute('id','recipe');
+    this.appendChild(divEl);
+  }
+}
+
+
+compareIngredients(userIngredients, drinkArray);
+var sortedResults = sortByMatch(drinkArray);
 displayResults(sortedResults,drinkArray);
+expandRecipe(sortedResults);
