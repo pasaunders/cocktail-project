@@ -25,18 +25,17 @@ a:hover {
   color: #e25b23;
 }
 
-.patrick {
+
+.aboutUsLi {
 
 }
 
-.rick {
-
+.name {
+height: 100px;
+width: 200px;
 }
 
-.nick {
-
-}
-
-.sean {
-  
+.aboutImg {
+height: 300px;
+width: 300px;
 }
