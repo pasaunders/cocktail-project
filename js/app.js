@@ -95,7 +95,14 @@ function delDrink(drinkID){ // Removes drink with a drinkName string matching th
 	})
 };
 
-function delIngredient(ingName){ // Removes ingredient with a string matching ingName from the user's local data.
+function delIngredient(ingID){ // Removes ingredient with a string matching ingName from the user's local data.
+	ingArray.forEach(function(ingredient, indexNum){
+		if (ingID === ingredient.ingName){
+			ingArray.splice(indexNum, 1);
+			console.log('Deleting ' + ingID + ' from local storage..')
+		}
+		localStorage.setItem('ingData', JSON.stringify(ingArray));
+	})
 };
 
 // drinksDir.set(drinkArray);
@@ -105,3 +112,4 @@ function delIngredient(ingName){ // Removes ingredient with a string matching in
 // updateIngredients();
 
 // delDrink('Screwdriver');
+// delIngredient('whiskey');
