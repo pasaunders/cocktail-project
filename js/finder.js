@@ -1,6 +1,6 @@
 'use strict';
 
-var userIngredients = ['orange juice','vodka','whiskey'];
+var userIngredients = ['Orange juice','Vodka','Whiskey'];
 
 
 function compareIngredients(ingredients,drinks){
@@ -9,23 +9,24 @@ function compareIngredients(ingredients,drinks){
   }
   var sort = [];
   for(var i = 0; i < drinks.length; i++){
-    var count = 0;
       for(var j = 0; j < ingredients.length; j++){
         for(var k = 0; k < drinks[i].ingredients.length; k++){
           if(ingredients[j].toLowerCase() === drinks[i].ingredients[k][0].toLowerCase()){
             drinks[i].match += 1;
             drinks[i].ingMatch.push(drinks[i].ingredients[k][0]);
-            count += 1;
           } else if(k > j && drinks[i].ingMismatch.indexOf(drinks[i].ingredients[k][0]) === -1){
             drinks[i].ingMismatch.push(drinks[i].ingredients[k][0]);
-            count += 1;
           }
         }
         drinks[i].percentMatch = drinks[i].match / drinks[i].ingredients.length;
       }
+      if(drinks[i].ingMatch.indexOf(drinks[i].ingredients[0][0]) === -1){
+        drinks[i].ingMismatch.push(drinks[i].ingredients[0][0]);
+      }
   }
+  return drinks;
 }
-compareIngredients(userIngredients, drinkArray);
+var drinks = compareIngredients(userIngredients, drinkArray);
 
 var sortedResults = sortByMatch(drinkArray);
 
@@ -46,15 +47,14 @@ function displayResults(sortedResults,drinks){
     drinkDisplay.appendChild(resultArticle);
     var drinkItems = document.getElementById('result'+i);
     var imageEl = document.createElement('img');
-    console.log(test);
     var headingEl = document.createElement('h4');
     headingEl.setAttribute('id','images'+i);
     var matchEl = document.createElement('p');
     var mismatchEl = document.createElement('p');
     matchEl.setAttribute('id', 'match');
     mismatchEl.setAttribute('id', 'mismatch');
-    matchEl.textContent = drinks[sortedResults[i][0]].ingMatch;
-    mismatchEl.textContent = drinks[sortedResults[i][0]].ingMismatch;
+    matchEl.textContent = drinks[sortedResults[i][0]].ingMatch.join(', ');
+    mismatchEl.textContent = drinks[sortedResults[i][0]].ingMismatch.join(', ');
     imageEl.src='img/'+ drinks[sortedResults[i][0]].imageProperty;
     headingEl.textContent = drinks[sortedResults[i][0]].drinkName;
     drinkItems.appendChild(headingEl);
@@ -65,7 +65,3 @@ function displayResults(sortedResults,drinks){
   }
 }
 displayResults(sortedResults,drinkArray);
-
-
-// ingMatch
-// ingMismatch
