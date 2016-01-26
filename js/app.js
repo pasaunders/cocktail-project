@@ -16,8 +16,8 @@ function ingredient(ingName, image, substitutes){
 	this.substitutes = substitutes;
 }
 
-var base = new Firebase("https://glaring-heat-8547.firebaseio.com"); // Link to the firebase!
-var drinksDir = base.child("drinks");
+// var base = new Firebase("https://glaring-heat-8547.firebaseio.com"); // Link to the firebase!
+// var drinksDir = base.child("drinks");
 var drinkArray = [];
 var ingArray = [];
 
