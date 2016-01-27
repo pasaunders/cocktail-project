@@ -6,6 +6,8 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/finder.css" type="text/css" rel="stylesheet" />
+    <link href="css/finderRender.css" type="text/css" rel="stylesheet" />
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
   </head>
   <body>
     <div class="logoDiv">
@@ -20,16 +22,25 @@
       <button id='drinkByIng'>Find Drinks based on Ingredients</button>
       <button id='random'>Random Drink</button>
       <select id='selector'>
-        <option value="default">Sort By Selection</option>
+        <option value="default">Sort By Liquor</option>
+        <option value="brandy">Brandy</option>
         <option value="gin">Gin</option>
         <option value="rum">Rum</option>
         <option value="tequila">Tequila</option>
         <option value="vodka">Vodka</option>
         <option value="whiskey">Whiskey</option>
       </select>
+      <select id='category'>
+        <option value="default">Sort By Category</option>
+        <option value="hot">Hot</option>
+        <option value="cold">Cold</option>
+        <option value="shot">Shot</option>
+        <option value="punch">Punch</option>
+      </select>
       <button id='clear'>Clear Results</button>
     </section>
     <section id='drinkResults'>
+      <script type="text/javascript" src="js/finderRender.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/finder.js"></script>
     </section>
