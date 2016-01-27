@@ -9,6 +9,7 @@ function drinkRecipe(drinkName, ingredients, glass, image, category, liquor){
 	this.percentMatch = 0;
 	this.ingMatch = [];
 	this.ingMismatch = [];
+	this.drinkRecipe = 'Generic placeholder description to be used temporarily for all drinks.'
 }
 function ingredient(ingName, image, substitutes){
 	this.ingName = ingName;
@@ -22,15 +23,15 @@ var drinkArray = [];
 var ingArray = [];
 
 var drinkArray = [  // This array holds objects for every drink ever entered into the database!
-    new drinkRecipe('Screwdriver',[['Vodka','1.5 oz'],['Orange juice','6 oz']],'high ball','highball.jpg','cold','vodka'),
-    new drinkRecipe('Margarita',[['Tequila','1.5 oz'],['Triple sec','1.5 oz'],['Lime juice','1-1.25 oz'],['Salt','on the rim of the glass']],'margarita','margarita.jpg','cold','tequila'),
-    new drinkRecipe('Irish Coffee',[['Whiskey','1.5 oz'],['Coffee','1 cup'],['Brown sugar','1 tablespoon']],'Irish Coffee','irish.jpg','warm','whiskey'),
-    new drinkRecipe('Mimosa',[['champagne','1/3 cup'],['orange juice','1/3 cup'],['triple sec','1 tablespoon (optional)']],'flute','flute.jpg','cold','champagne')
+    new drinkRecipe('Screwdriver',[['Vodka','1.5 oz'],['Orange juice','6 oz']],'high ball','img/screwdriver.jpg','cold','vodka'),
+    new drinkRecipe('Margarita',[['Tequila','1.5 oz'],['Triple sec','1.5 oz'],['Lime juice','1-1.25 oz'],['Salt','on the rim of the glass']],'margarita','img/margarita.jpg','cold','tequila'),
+    new drinkRecipe('Irish Coffee',[['Whiskey','1.5 oz'],['Coffee','1 cup'],['Brown sugar','1 tablespoon']],'Irish Coffee','img/irish.jpg','warm','whiskey'),
+    new drinkRecipe('Mimosa',[['champagne','1/3 cup'],['orange juice','1/3 cup'],['triple sec','1 tablespoon (optional)']],'flute','img/mimosa.jpg','cold','champagne')
   ];
 var ingArray = [ // This array holds objects for every ingredient the user has in their
-		new ingredient('vodka', 'img/vodka.jpg', ''),
-		new ingredient('rum', 'img/rum.jpg', ''),
-		new ingredient('whiskey', 'img/whiskey.jpg', '')
+		new ingredient('Vodka', 'img/vodka.jpg', ''),
+		new ingredient('Rum', 'img/rum.jpg', ''),
+		new ingredient('Whiskey', 'img/whiskey.jpg', '')
 ];
 
 function loadDrinks(){ // Adds all drinks stored in the database to the current instance.

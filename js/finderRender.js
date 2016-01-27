@@ -2,7 +2,7 @@ var layout = {
   div: document.createElement('div'),
   content: document.createElement('div'),
 }
-function renderIndex(){
+function renderFinder(){
   layout.div.className = 'bodyDiv';
   layout.content.className = 'contentDiv';
   document.body.appendChild(layout.div);
@@ -10,7 +10,7 @@ function renderIndex(){
 }
 function makeCell(){
   var cell = document.createElement('div');
-  cell.className = 'ingredientDiv';
+  cell.className = 'drinkDiv';
   layout.content.appendChild(cell);
   return cell;
 }
@@ -20,15 +20,15 @@ function divCell(target){
   target.appendChild(divide);
   return divide;
 }
-function renderIng(ingredientID){
+function renderDrink(drinkObj){
   var img = document.createElement('img');
-  img.setAttribute('src', ingredientID.image);
+  console.log(drinkObj.imageProperty);
+  img.setAttribute('src', drinkObj.imageProperty);
   img.className = 'ingIcon';
-
   var cell = makeCell();
   var idCont = divCell(cell);
   var title = document.createElement('p');
-  title.textContent = ingredientID.ingName;
+  title.textContent = drinkObj.drinkName;
   title.className = 'ingTitle';
   idCont.appendChild(img);
   idCont.appendChild(title);
@@ -37,52 +37,56 @@ function renderIng(ingredientID){
   var delButton = document.createElement('img');
   delButton.className = 'delButton';
   delButton.setAttribute('src', 'img/delIcon.png');
-
   delButton.addEventListener('click', function(){
     layout.content.removeChild(cell);
-    delIngredient(ingredientID.ingName);
+    // delDrink(drinkObj.drinkName);
   })
-
   delCont.appendChild(delButton);
 
-  imgListener(img, ingredientID, cell);
+  var haveIng = divCell(cell);
+  var haveText = document.createElement('p');
+  haveText.className = 'ingTitle'
+  haveText.textContent = 'Matched Ingredients:';
+  haveIng.appendChild(haveText);
+  var missIng = divCell(cell);
+  var missText = document.createElement('p');
+  missText.className = 'ingTitle'
+  missText.textContent = 'Missing Ingredients:'
+  missIng.appendChild(missText);
+
+  imgListener(img, drinkObj, cell);
 }
-function imgListener(img, ingredientID, cell){
+function imgListener(img, drinkObj, cell){
   var imgOpen = false;
-  var igmEl;
-  var subEl;
+  var descCell;
+  var descTitle;
   img.addEventListener('click', function(){
     if (!imgOpen){
       imgOpen = true;
-      imgEl = document.createElement('input');
-      imgEl.type = 'text';
-      imgEl.value = 'Enter ' + ingredientID.ingName + ' image location.';
-      cell.appendChild(imgEl);
-      subEl = document.createElement('input')
-      subEl.setAttribute('type', 'submit');
-      subEl.setAttribute('value', 'Submit');
-      subEl.addEventListener('click', function(){
-        ingredientID.image = imgEl.value
-        imgEl.value = '';
-        updateIngredients();
-        refreshIndex();
-      })
-      cell.appendChild(subEl);
+      descCell = divCell(cell);
+      descCell.className = descCell;
+      descTitle = document.createElement('p');
+      descTitle.textContent = 'Recipe Description:'
+      descTitle.className = 'ingTitle';
+      descCell.appendChild(descTitle);
+
+      var description = document.createElement('p');
+      description.textContent = drinkObj.drinkRecipe;
+      descCell.appendChild(description);
     } else {
-      cell.removeChild(subEl);
-      cell.removeChild(imgEl);
+      cell.removeChild(descCell);
+      cell.removeChild(descTitle);
       imgOpen = false;
     }
   })
 }
-
-function refreshIndex(){
+function refreshDrinks(array){
   if(layout.div.childNodes[0]){layout.div.removeChild(layout.content);}
   layout.content = document.createElement('div');
-  renderIndex();
-  ingArray.forEach(function(ingID){
-    renderIng(ingID);
+  renderFinder();
+  array.forEach(function(drinkID){
+    renderDrink(drinkID);
   })
 }
 
-refreshIndex();
+refreshDrinks(drinkArray);
