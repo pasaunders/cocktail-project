@@ -9,7 +9,7 @@ function drinkRecipe(drinkName, ingredients, glass, image, category, liquor){
 	this.percentMatch = 0;
 	this.ingMatch = [];
 	this.ingMismatch = [];
-	this.drinkRecipe = 'Generic placeholder description to be used temporarily for all drinks.'
+	this.drinkRecipe = 'Generic placeholder description to be used temporarily for all drinks. Add four parts this to two parts that, drink up. Get drunk.'
 }
 function ingredient(ingName, image, substitutes){
 	this.ingName = ingName;

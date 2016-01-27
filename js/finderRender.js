@@ -33,6 +33,28 @@ function renderDrink(drinkObj){
   idCont.appendChild(img);
   idCont.appendChild(title);
 
+  var haveIng = divCell(cell);
+  var haveText = document.createElement('p');
+  haveText.className = 'ingTitle'
+  haveText.textContent = 'Matching Ingredients:';
+  haveIng.appendChild(haveText);
+  var missIng = divCell(cell);
+  var missText = document.createElement('p');
+  missText.className = 'ingTitle'
+  missText.textContent = 'Missing Ingredients:'
+  missIng.appendChild(missText);
+
+  var missMatch = getMissMatch(drinkObj);
+  console.log(missMatch);
+  var miss = document.createElement('p');
+  var match = document.createElement('p');
+  miss.textContent = missMatch.missing.toString();
+  match.textContent = missMatch.matching.toString();
+  miss.className = 'missingText';
+  match.className = 'matchingText';
+  missIng.appendChild(miss);
+  haveIng.appendChild(match);
+  
   var delCont = divCell(cell);
   var delButton = document.createElement('img');
   delButton.className = 'delButton';
@@ -43,16 +65,6 @@ function renderDrink(drinkObj){
   })
   delCont.appendChild(delButton);
 
-  var haveIng = divCell(cell);
-  var haveText = document.createElement('p');
-  haveText.className = 'ingTitle'
-  haveText.textContent = 'Matched Ingredients:';
-  haveIng.appendChild(haveText);
-  var missIng = divCell(cell);
-  var missText = document.createElement('p');
-  missText.className = 'ingTitle'
-  missText.textContent = 'Missing Ingredients:'
-  missIng.appendChild(missText);
 
   imgListener(img, drinkObj, cell);
 }
@@ -64,7 +76,7 @@ function imgListener(img, drinkObj, cell){
     if (!imgOpen){
       imgOpen = true;
       descCell = divCell(cell);
-      descCell.className = descCell;
+      descCell.className = 'descCell';
       descTitle = document.createElement('p');
       descTitle.textContent = 'Recipe Description:'
       descTitle.className = 'ingTitle';
@@ -72,10 +84,10 @@ function imgListener(img, drinkObj, cell){
 
       var description = document.createElement('p');
       description.textContent = drinkObj.drinkRecipe;
+      description.className = 'descText';
       descCell.appendChild(description);
     } else {
       cell.removeChild(descCell);
-      cell.removeChild(descTitle);
       imgOpen = false;
     }
   })
@@ -87,6 +99,24 @@ function refreshDrinks(array){
   array.forEach(function(drinkID){
     renderDrink(drinkID);
   })
+}
+function getMissMatch(drinkObj){
+  var ingmatch = {matching: [], missing: []};
+  drinkObj.ingredients.forEach(function(ingArr){
+    var match = false
+    ingArray.forEach(function(ingObj){
+      console.log(ingObj.ingName);
+      console.log(ingArr[0]);
+      if (ingArr[0].toLowerCase() === ingObj.ingName.toLowerCase()){match = true;}
+    })
+    console.log(match);
+    if (match){
+      ingmatch.matching.push(ingArr[0]);
+    } else {
+      ingmatch.missing.push(ingArr[0]);
+    }
+  })
+  return ingmatch
 }
 
 refreshDrinks(drinkArray);

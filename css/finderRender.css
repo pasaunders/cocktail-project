@@ -22,7 +22,7 @@
   align-items: center;
   flex-wrap: wrap;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .contentImg {
   width: 80%;
@@ -70,9 +70,23 @@
   display: block;
 }
 .descCell {
-  width: 90%;
-  margin: 10px
+  width: 100%;
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+.matchingText{
+  font: bold 14px Georgia, serif;
+  color: #10e400;
+}
+.missingText{
+  font: bold 14px Georgia, serif;
+  color: #fa2900;
+}
+.descText{
+  font: 14px Georgia, serif
 }
