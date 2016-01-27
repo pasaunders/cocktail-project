@@ -22,7 +22,6 @@ function divCell(target){
 }
 function renderDrink(drinkObj){
   var img = document.createElement('img');
-  console.log(drinkObj.imageProperty);
   img.setAttribute('src', drinkObj.imageProperty);
   img.className = 'ingIcon';
   var cell = makeCell();
@@ -45,7 +44,6 @@ function renderDrink(drinkObj){
   missIng.appendChild(missText);
 
   var missMatch = getMissMatch(drinkObj);
-  console.log(missMatch);
   var miss = document.createElement('p');
   var match = document.createElement('p');
   miss.textContent = missMatch.missing.toString();
@@ -54,7 +52,7 @@ function renderDrink(drinkObj){
   match.className = 'matchingText';
   missIng.appendChild(miss);
   haveIng.appendChild(match);
-  
+
   var delCont = divCell(cell);
   var delButton = document.createElement('img');
   delButton.className = 'delButton';
@@ -105,11 +103,8 @@ function getMissMatch(drinkObj){
   drinkObj.ingredients.forEach(function(ingArr){
     var match = false
     ingArray.forEach(function(ingObj){
-      console.log(ingObj.ingName);
-      console.log(ingArr[0]);
       if (ingArr[0].toLowerCase() === ingObj.ingName.toLowerCase()){match = true;}
     })
-    console.log(match);
     if (match){
       ingmatch.matching.push(ingArr[0]);
     } else {
