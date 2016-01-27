@@ -2,17 +2,6 @@ var layout = {
   div: document.createElement('div'),
   content: document.createElement('div'),
 }
-function getSubstitutes(ingredientID){
-  var subArray = [];
-  ingredientID.substitutes.forEach(function(sub, iNum){
-    ingArray.forEach(function(ingCabinet, indexNum){
-      if (sub.toLowerCase() === ingCabinet.ingName.toLowerCase()){
-        subArray.push(ingCabinet);
-      }
-    })
-  })
-  return subArray;
-}
 function renderIndex(){
   layout.div.className = 'bodyDiv';
   layout.content.className = 'contentDiv';
@@ -30,12 +19,6 @@ function divCell(target){
   divide.className = 'innerDiv';
   target.appendChild(divide);
   return divide;
-}
-function putRandomImg(target){
-  var img = document.createElement('img');
-  img.setAttribute('src', 'http://cdn1.bostonmagazine.com/wp-content/uploads/2012/02/liquor.jpg');
-  img.className = 'contentImg';
-  target.appendChild(img);
 }
 function renderIng(ingredientID){
   var img = document.createElement('img');
@@ -61,32 +44,45 @@ function renderIng(ingredientID){
   })
 
   delCont.appendChild(delButton);
-//   var addButton = document.createElement('img');
-//   addButton.className = 'delButton';
-//   addButton.setAttribute('src', 'img/addIcon.png');
-//   delCont.appendChild(addButton);
-//
-//   var substitute = document.createElement('p');
-//   substitute.className = 'subText';
-//   substitute.textContent = 'Substitutes:';
-//   delCont.appendChild(substitute);
-//
-//   var subArray = getSubstitutes(ingredientID);
-//   console.log(subArray);
-//   subArray.forEach(function(ingredient){
-//     printSubstitute(delCont, ingredient);
-//   })
-// }
-// function printSubstitute(target, ingredient){
-//   var subImg = document.createElement('img');
-//   subImg.setAttribute('src', ingredient.image);
-//   subImg.className = 'subImg';
-//   target.appendChild(subImg);
+
+  imgListener(img, ingredientID, cell);
+}
+function imgListener(img, ingredientID, cell){
+  var imgOpen = false;
+  var igmEl;
+  var subEl;
+  img.addEventListener('click', function(){
+    if (!imgOpen){
+      imgOpen = true;
+      imgEl = document.createElement('input');
+      imgEl.type = 'text';
+      imgEl.value = 'Enter ' + ingredientID.ingName + ' image location.';
+      cell.appendChild(imgEl);
+      subEl = document.createElement('input')
+      subEl.setAttribute('type', 'submit');
+      subEl.setAttribute('value', 'Submit');
+      subEl.addEventListener('click', function(){
+        ingredientID.image = imgEl.value
+        imgEl.value = '';
+        updateIngredients();
+        refreshIndex();
+      })
+      cell.appendChild(subEl);
+    } else {
+      cell.removeChild(subEl);
+      cell.removeChild(imgEl);
+      imgOpen = false;
+    }
+  })
 }
 
+function refreshIndex(){
+  if(layout.div.childNodes[0]){layout.div.removeChild(layout.content);}
+  layout.content = document.createElement('div');
+  renderIndex();
+  ingArray.forEach(function(ingID){
+    renderIng(ingID);
+  })
+}
 
-renderIndex();
-
-renderIng(ingArray[0]);
-renderIng(ingArray[1]);
-renderIng(ingArray[2]);
+refreshIndex();
