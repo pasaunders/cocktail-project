@@ -18,7 +18,7 @@ function ingredient(ingName, image, substitutes){
 
 var base = new Firebase("https://glaring-heat-8547.firebaseio.com"); // Link to the firebase!
 var drinksDir = base.child("drinks");
-var drinkArray = [];
+var drinkArray = ['thing'];
 var ingArray = [];
 
 var drinkArray = [  // This array holds objects for every drink ever entered into the database!
