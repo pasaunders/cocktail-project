@@ -21,19 +21,47 @@ function enterIngredientSubmit(event) {  //am I properly passing information tho
 
 
 function enterCocktailSubmit(event) {
+  console.log(event);
   event.preventDefault();
-
-  var ingredient = document.getElementsByClassName('cocktailIngredient'); //these lines pull data from a class of DOM entries, then push the data to the defined arrays.
+  var name = document.getElementById('cocktail-name');
+  var ingredient = document.getElementsByClassName('cocktailIngredient');
   var amount = document.getElementsByClassName('ingredientAmount');
+  var category = document.getElementsByClassName('category');
+  var glassware = document.getElementById('glassware');
+  var liquor = document.getElementById('base-liquor');
+  var instructions = document.getElementById('cocktailInstructions');
+  var categoryValue = [];
+  for (var i = 0; i < category.length; i++) {
+    if (category[i].checked) {
+      categoryValue.push(category[i].value);
+    }
+  }
+  console.log('categories chosen: ' + categoryValue);
   var ingredientArray = [];
   var amountArray = [];
-  Array.prototype.forEach.call(ingredient, function(e) { ingredientArray.push(e.value) });
-  Array.prototype.forEach.call(amount, function(e) { amountArray.push(e.value)});
-
-  event.target.cocktailIngredient.value = null;
-  event.target.ingredientAmount.value = null;
+  Array.prototype.forEach.call(ingredient, function(e) {
+    if (e.value) {
+      ingredientArray.push(e.value)
+    }
+  });
+  Array.prototype.forEach.call(amount, function(e) {
+    if (e.value) {
+      amountArray.push(e.value)
+    }
+  });
+  console.log(ingredientArray);
+  console.log(amountArray);
+  var drinkIngredientArray = [];
   for (var i = 0; i < ingredientArray.length; i++) {
-    //push ingredientArray value [i] to the recipe object here.
-    //push amountArray value [i]  to te recipe object here.
+    drinkIngredientArray.push([]);
+    drinkIngredientArray[i][0] = ingredientArray[i];
+    drinkIngredientArray[i][1] = amountArray[i];
   }
+  console.log(drinkIngredientArray);
+  var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
+    drinkArray.push(newDrink);
+  for (var i = 0; i < drinkIngredientArray.length; i++) {
+    //when loading info to the object, load the drinkIngredientArray entries here
+  }
+  document.getElementById('cocktail-entry').reset;
 }
