@@ -1,0 +1,79 @@
+/*about us css*/
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  float: left;
+  padding: 20px;
+}
+
+p {
+  font-size: 20px;
+  font-family: ;
+}
+
+h1 {
+text-align: center;
+font-family: 'Quicksand', sans-serif;
+color: #913915;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+   color: #E5E4E2;
+}
+
+ .name {
+  font-family: 'Quicksand', sans-serif;
+  color: #913915;
+ }
+
+/*flip css*/
+/* entire container, keeps perspective */
+.aboutUsLi {
+  perspective: 1000;
+    list-style-position: inside;
+  border: 1px solid black;
+}
+  /* flip the pane when hovered */
+  .aboutUsLi:hover, .aboutUsLi.hover {
+    transform: rotateY(180deg);
+  }
+
+.aboutUsLi, .front, .back{
+  width: 300px;
+  height: 300px;
+}
+
+/* flip speed goes here */
+.aboutUsLi {
+  transition: 0.9s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+    background: url(http://www.download3dhouse.com/wp-content/uploads/2013/04/Brown-wood-grain-wallpaper-download.jpg);
+}
+
