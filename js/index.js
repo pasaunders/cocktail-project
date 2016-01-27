@@ -1,7 +1,9 @@
 'use strict';
 
 var ingredientsEntry = document.getElementById('ingredients-entry');
-ingredientsEntry.addEventListener('submit', enterIngredientSubmit); //this should listen for the submit button, then grab and send the text box contents to the function.
+ingredientsEntry.addEventListener('submit', enterIngredientSubmit);
+var cocktailEntry = document.getElementById('cocktail-entry');
+cocktailEntry.addEventListener('submit', enterCocktailSubmit);
 
 function enterIngredientSubmit(event) {  //am I properly passing information thorugh here?
   console.log(event.target.ingredientList.value);
@@ -15,4 +17,23 @@ function enterIngredientSubmit(event) {  //am I properly passing information tho
     ingArray.push(newIngredient);
   }
   updateIngredients();
+}
+
+
+function enterCocktailSubmit(event) {
+  event.preventDefault();
+
+  var ingredient = document.getElementsByClassName('cocktailIngredient'); //these lines pull data from a class of DOM entries, then push the data to the defined arrays.
+  var amount = document.getElementsByClassName('ingredientAmount');
+  var ingredientArray = [];
+  var amountArray = [];
+  Array.prototype.forEach.call(ingredient, function(e) { ingredientArray.push(e.value) });
+  Array.prototype.forEach.call(amount, function(e) { amountArray.push(e.value)});
+
+  event.target.cocktailIngredient.value = null;
+  event.target.ingredientAmount.value = null;
+  for (var i = 0; i < ingredientArray.length; i++) {
+    //push ingredientArray value [i] to the recipe object here.
+    //push amountArray value [i]  to te recipe object here.
+  }
 }
