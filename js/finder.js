@@ -1,10 +1,15 @@
 'use strict';
 var userIngredients = ['Orange juice','Vodka','Whiskey'];
+var sortRes = [];
 
 function compareIngredients(ingredients,drinks){
-  for(var l; l < drinks.length; l++){
+  for(var l=0; l < drinks.length; l++){
     drinks[l].percentMatch = 0;
+    drinks[l].ingMatch = [];
+    drinks[l].ingMismatch = [];
+    drinks[l].match = 0;
   }
+
   var sort = [];
   for(var i = 0; i < drinks.length; i++){
       for(var j = 0; j < ingredients.length; j++){
@@ -22,14 +27,23 @@ function compareIngredients(ingredients,drinks){
         drinks[i].ingMismatch.push(drinks[i].ingredients[0][0]);
       }
   }
+  return drinks;
 }
 
-function sortByMatch(drinks){
+function sortByMatch(drinks,amount){
   var drinkSort = [];
-  for(var i = 0; i < drinks.length; i++){
-    drinkSort.push([i,drinks[i].percentMatch]);
+  if(amount){
+    for(var i = 0; i < amount; i++){
+      var drinkSelect = Math.floor(Math.random() * drinkArray.length);
+      drinkSort.push([drinkSelect,drinks[i].percentMatch]);
+    }
+    drinkSort.sort(function(a,b){return b[1]-a[1]});
+  } else{
+    for(var i = 0; i < drinks.length; i++){
+      drinkSort.push([i,drinks[i].percentMatch]);
+    }
+    drinkSort.sort(function(a,b){return b[1]-a[1]});
   }
-  drinkSort.sort(function(a,b){return b[1]-a[1]});
   return drinkSort;
 }
 
@@ -68,10 +82,8 @@ function expandRecipe (sortedResults){
 }
 function handleRecipe(){
   var num = this.id.match(/\d+/);
-  console.log(document.getElementById('recipe'+num));
   if(document.getElementById('recipe'+num) && this.childElementCount >=4){
     var removeEl = this;
-    console.log(removeEl);
     removeEl.removeChild(removeEl.lastChild);
   }
   else{
@@ -85,9 +97,9 @@ function handleRecipe(){
 
 function displayRecipe(num){
   var recipeEl = document.getElementById('recipe'+num)
-  var h5El = document.createElement('h5');
-  h5El.textContent = drinkArray[sortRes[num][0]].drinkName;
-  recipeEl.appendChild(h5El);
+  var h4El = document.createElement('h4');
+  h4El.textContent = drinkArray[sortRes[num][0]].drinkName;
+  recipeEl.appendChild(h4El);
   var ulEl = document.createElement('ul');
   for(var i = 0; i < drinkArray[sortRes[num][0]].ingredients.length; i++){
     var liEl = document.createElement('li')
@@ -97,10 +109,56 @@ function displayRecipe(num){
   recipeEl.appendChild(ulEl);
 }
 
+function screenedDrinks(drinks,category){
+  var drinksScreened = [];
+  for(var i = 0; i < drinks.length; i++){
+    if(drinks[i].baseLiquior.toLowerCase() === category.toLowerCase()){
+      drinksScreened.push(drinks[i])
+    }
+  }
+  return drinksScreened;
+}
+
+function clearDrinks(){
+  var clearEl = document.getElementById('drinkResults')
+  while(clearEl.firstChild){
+    clearEl.removeChild(clearEl.firstChild);
+  }
+}
+
+function byIngredient(){
+  clearDrinks();
+  compareIngredients(userIngredients, drinkArray);
+  sortRes = sortByMatch(drinkArray);
+  displayResults(sortRes,drinkArray);
+  expandRecipe(sortRes);
+}
+function randomDrink(){
+  var drinkSelect = Math.floor(Math.random() * drinkArray.length);
+  clearDrinks();
+  compareIngredients(userIngredients, drinkArray);
+  sortRes = sortByMatch(drinkArray,1);
+  displayResults(sortRes,drinkArray);
+  expandRecipe(sortRes);
+}
+
+function screener(){
+  clearDrinks();
+  var screenBy = screenerSelect.value;
+  var drinksScreened = screenedDrinks(drinkArray,screenBy);
+  drinksScreened = compareIngredients(userIngredients, drinksScreened);
+  sortRes = sortByMatch(drinksScreened);
+  displayResults(sortRes,drinksScreened);
+  expandRecipe(sortRes);
+}
 
 
 
-compareIngredients(userIngredients, drinkArray);
-var sortRes = sortByMatch(drinkArray);
-displayResults(sortRes,drinkArray);
-expandRecipe(sortRes);
+var drinkByIngredients = document.getElementById('drinkByIng');
+drinkByIngredients.addEventListener('click', byIngredient);
+var clearEmOut = document.getElementById('clear');
+clearEmOut.addEventListener('click', clearDrinks);
+var randomTrigger = document.getElementById('random');
+randomTrigger.addEventListener('click', randomDrink);
+var screenerSelect = document.getElementById('selector');
+screenerSelect.addEventListener('change', screener);

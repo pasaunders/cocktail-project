@@ -27,12 +27,43 @@ img{
   width: 15%;
 }
 .recipe {
+  margin-top: 10px;
   flex-direction: column-reverse;
   align-items: baseline;
   height: 200px;
   width: 30%;
-  border: 5px black solid;
+  border: 2px gray solid;
+  border-radius: 10px;
 }
 li {
   font-size: 13px;
+}
+h4{
+  font-style: italic;
+  text-align: center;
+  text-decoration: underline;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+button{
+  margin-left: 10px;
+  font-size: 12px;
+}
+select{
+  margin-left: 10px;
+}
+select:hover{
+  color: green;
+  cursor: pointer;
+}
+button:hover{
+  color: green;
+  cursor: pointer;
+}
+#clear:hover{
+  color: red;
 }
