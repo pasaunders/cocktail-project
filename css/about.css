@@ -1,4 +1,3 @@
-/*about us css*/
 ul {
   list-style-type: none;
   display: flex;
@@ -15,7 +14,7 @@ p {
   font-family: ;
 }
 
-h1 {
+h1, p {
 text-align: center;
 font-family: 'Quicksand', sans-serif;
 color: #913915;
