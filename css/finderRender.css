@@ -85,6 +85,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;;
 }
 .ingCell {
   background-color: #f4f0e5;
@@ -109,12 +110,20 @@
   font: 14px Georgia, serif
 }
 .mismatch{
+  margin-left: 20px;
   display: flex;
-  width: 30%;
-  justify-content: space-between;
+  width: 50%;
+  justify-content: center;
 }
 .buffer{
   width: 100%;
   display: flex;
   justify-content: center;
+}
+.misCell{
+  display: flex;
+  width: 70%;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-around;
 }

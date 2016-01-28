@@ -36,11 +36,13 @@ function renderDrink(drinkObj){
   mismatchCell.className = 'mismatch';
 
   var haveIng = divCell(mismatchCell);
+  haveIng.className = 'misCell';
   var haveText = document.createElement('p');
   haveText.className = 'ingTitle'
   haveText.textContent = 'Matching Ingredients:';
   haveIng.appendChild(haveText);
   var missIng = divCell(mismatchCell);
+  missIng.className = 'misCell';
   var missText = document.createElement('p');
   missText.className = 'ingTitle'
   missText.textContent = 'Missing Ingredients:'
@@ -49,8 +51,8 @@ function renderDrink(drinkObj){
   var missMatch = getMissMatch(drinkObj);
   var miss = document.createElement('p');
   var match = document.createElement('p');
-  miss.textContent = missMatch.missing.toString();
-  match.textContent = missMatch.matching.toString();
+  miss.textContent = missMatch.missing.join(', ');
+  match.textContent = missMatch.matching.join(', ');
   miss.className = 'missingText';
   match.className = 'matchingText';
   missIng.appendChild(miss);
@@ -103,7 +105,7 @@ function imgListener(img, drinkObj, cell){
 
       imgEl = document.createElement('input'); // Render image input box
       imgEl.type = 'text';
-      imgEl.value = 'Enter ' + drinkObj.drinkName + ' image location.';
+      imgEl.value = 'Enter new ' + drinkObj.drinkName + ' image location.';
       descCell.appendChild(imgEl);
       subEl = document.createElement('input')
       subEl.setAttribute('type', 'submit');
