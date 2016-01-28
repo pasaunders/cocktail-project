@@ -3,6 +3,7 @@
   justify-content: center;
   flex: auto;
   flex-wrap: wrap;
+  font: bold 16px Georgia, serif;
 }
 .components {
   background-image: url("../img/bigLiquor.jpg");
@@ -55,6 +56,9 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 5px;
+}
+.categoryWrapper {
+  margin: 0 5px 0 5px;
 }
 .cocktailIngredient {
     display: flex;
