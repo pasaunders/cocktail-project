@@ -76,6 +76,7 @@
   display: block;
 }
 .descCell {
+  background-color: #f4f0e5;
   width: 65%;
   margin: 8px;
   padding: 8px;
@@ -86,6 +87,7 @@
   flex-wrap: wrap;
 }
 .ingCell {
+  background-color: #f4f0e5;
   width: 25%;
   margin: 8px;
   padding: 8px;

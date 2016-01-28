@@ -101,6 +101,20 @@ function imgListener(img, drinkObj, cell){
       description.className = 'descText';
       descCell.appendChild(description);
 
+      imgEl = document.createElement('input'); // Render image input box
+      imgEl.type = 'text';
+      imgEl.value = 'Enter ' + drinkObj.drinkName + ' image location.';
+      descCell.appendChild(imgEl);
+      subEl = document.createElement('input')
+      subEl.setAttribute('type', 'submit');
+      subEl.setAttribute('value', 'Submit');
+      subEl.addEventListener('click', function(){
+        drinkObj.imageProperty = imgEl.value
+        imgEl.value = '';
+        refreshDrinks(drinkArray);
+      })
+      descCell.appendChild(subEl);
+
     } else {
       cell.removeChild(bufferCell);
       imgOpen = false;
