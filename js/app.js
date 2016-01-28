@@ -48,16 +48,16 @@ function updateDrinks(){ // For all drink obects, if drinkName is not present in
 						modRef.update({imageProperty: drink.imageProperty});
 						console.log('User changed the image for ' + drink.drinkName);
 					};
-					// if (drink.drinkRecipe !== tempObj.drinks[cloudDrink].drinkRecipe){
-					// 	var modRef = drinksDir.child(cloudDrink);
-					// 	modRef.update({drinkRecipe: drink.drinkRecipe});
-					// 	console.log('User changed the recipe for ' + drink.drinkName);
-					// };
-					// if (drink.ingredients !== tempObj.drinks[cloudDrink].ingredients){
-					// 	var modRef = drinksDir.child(cloudDrink);
-					// 	modRef.update({ingredients: drink.ingredients});
-					// 	console.log('User changed the ingredients for ' + drink.drinkName);
-					// };
+					if (drink.drinkRecipe !== tempObj.drinks[cloudDrink].drinkRecipe){
+						var modRef = drinksDir.child(cloudDrink);
+						modRef.update({drinkRecipe: drink.drinkRecipe});
+						console.log('User changed the recipe for ' + drink.drinkName);
+					};
+					if (drink.ingredients.length !== tempObj.drinks[cloudDrink].ingredients.length){
+						var modRef = drinksDir.child(cloudDrink);
+						modRef.update({ingredients: drink.ingredients});
+						console.log('User changed the ingredients for ' + drink.drinkName);
+					};
 				} // If there's a match, set match = true
 			}
 			if (match){ // if maych is true, it matched one of the drinks in the database

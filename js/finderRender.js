@@ -64,7 +64,7 @@ function renderDrink(drinkObj){
   delButton.setAttribute('src', 'img/delIcon.png');
   delButton.addEventListener('click', function(){
     layout.content.removeChild(cell);
-    // delDrink(drinkObj.drinkName);
+    delDrink(drinkObj.drinkName);
   })
   delCont.appendChild(delButton);
 
