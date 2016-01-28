@@ -65,3 +65,5 @@ function enterCocktailSubmit(event) {
   }
   document.getElementById('cocktail-entry').reset;
 }
+
+refreshIndex();
