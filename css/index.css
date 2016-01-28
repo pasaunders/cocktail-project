@@ -1,19 +1,33 @@
 .dataEntry {
   display: flex;
-  justify-content: space-around;
   flex-flow: column;
   flex: auto;
 }
 .components {
-
+  display: flex;
 }
-.recipe{
-  justify-content: space-around;
+.recipe {
+  display: flex;
 }
 .name {
   display: flex;
   justify-content: center;
 }
+.ingredientContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.categoryLabel {
+
+}
+.triviaContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.cocktailInstructions {
+
+}
+/*
 .cocktailIngredients {
   display: inline-flex;
   flex-flow: column;
@@ -26,4 +40,4 @@
 }
 .categoryLabel {
   display: flex;
-}
+}*/
