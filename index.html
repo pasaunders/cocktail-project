@@ -6,6 +6,7 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
   </head>
   <body>
     <div class="logoDiv">
@@ -20,58 +21,69 @@
       <label for="">Ingredients:<br /><textarea name="ingredientsText" rows="8" cols="40" id="ingredientList">Enter ingredients here, separated by commas.</textarea></label><br />
       <button type="submit" name="submitIngredients" id="submit-ingredients">Submit</button>
     </form>
-    <fieldset class="dataEntry" id="cocktail-entry">
-      <legend>New Cocktail</legend>
-      <label for="" class="cocktailIngredients">Ingredients:<br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient1"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient2"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient3"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient4"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient5"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient6"><br />
-        <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient7"><br />
-      </label>
-      <label for="" class="cocktailAmounts">Amount:<br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount1"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount2"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount3"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount4"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount5"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount6"><br />
-        <input type="text" class="ingredientAmount" value="" id="ingredientAmount7"><br />
-      </label>
-      <label for="">Categories:<br/>
-        <input type="checkbox" name="category" value="hot"> Hot
-        <input type="checkbox" name="category" value="cold"> Cold
-        <input type="checkbox" name="category" value="shot"> Shot
-        <input type="checkbox" name="category" value="punch"> Punch<br />
-        <input type="checkbox" name="category" value="whiskey"> Whiskey
-        <input type="checkbox" name="category" value="gin"> Gin
-        <input type="checkbox" name="category" value="rum"> Rum
-        <input type="checkbox" name="category" value="tequila"> Tequila
-        <input type="checkbox" name="category" value="brandy"> Brandy<br />
-        <input type="checkbox" name="category" value="vodka"> Vodka
-        <input type="checkbox" name="category" value="beer"> Beer
-        <input type="checkbox" name="category" value="wine"> Wine
-        <input type="checkbox" name="category" value="other"> Other <br />
-      </label>
-      <label for="">Glassware:<br />
-        <select class="" name="glassware">
-          <option value="flute">Flute</option>
-          <option value="highball">highball</option>
-          <option value="irish">Irish Coffee</option>
-          <option value="margarita">Margarita</option>
-          <option value="martini">Martini</option>
-          <option value="rocks">Rocks</option>
-          <option value="shot">Shot</option>
-          <option value="snifter">Snifter</option>
-          <option value="wine">Wine Glass</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-      <label for="">Instructions:<br /><textarea name="cocktailInstructions" rows="8" cols="40" id="cocktailInstructions">Enter instructions here.</textarea></label><br/>
-      <button type="submit" name="submitCocktail">Submit</button>
-    </fieldset>
+    <form class="" action="index.html" method="post" id="cocktail-entry">
+      <fieldset class="dataEntry">
+        <legend>New Cocktail</legend>
+        <label for="">Cocktail Name:<br />
+          <input type="text" value="" id="cocktail-name"><br />
+        </label>
+        <label for="" class="cocktailIngredients">Ingredients:<br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient1"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient2"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient3"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient4"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient5"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient6"><br />
+          <input type="text" class="cocktailIngredient" value="" id="cocktailIngredient7"><br />
+        </label>
+        <label for="" class="cocktailAmounts">Amount:<br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount1"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount2"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount3"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount4"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount5"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount6"><br />
+          <input type="text" class="ingredientAmount" value="" id="ingredientAmount7"><br />
+        </label>
+        <label for="">Categories:<br/>
+          <input type="checkbox" class="category" value="hot"> Hot
+          <input type="checkbox" class="category" value="cold"> Cold
+          <input type="checkbox" class="category" value="shot"> Shot
+          <input type="checkbox" class="category" value="punch"> Punch<br />
+          <input type="checkbox" class="category" value="cocktail"> Cocktail
+          <input type="checkbox" class="category" value="highball"> Highball
+          <input type="checkbox" class="category" value="fast"> Fast
+          <input type="checkbox" class="category" value="flaming"> Flaming
+          <input type="checkbox" class="category" value="classic"> Classic<br />
+        </label>
+        <label for="">Base Liquor: <br />
+          <select class="" name="baseLiquior" id="base-liquor">
+            <option value="brandy">Brandy</option>
+            <option value="gin">Gin</option>
+            <option value="rum">Rum</option>
+            <option value="tequila">Tequila</option>
+            <option value="vodka">Vodka</option>
+            <option value="whiskey">Whiskey</option>
+          </select><br />
+        </label>
+        <label for="">Glassware:<br />
+          <select class="" name="glassware" id="glassware">
+            <option value="flute">Flute</option>
+            <option value="highball">Highball</option>
+            <option value="irish">Irish Coffee</option>
+            <option value="margarita">Margarita</option>
+            <option value="martini">Martini</option>
+            <option value="rocks">Rocks</option>
+            <option value="shot">Shot</option>
+            <option value="snifter">Snifter</option>
+            <option value="wine">Wine Glass</option>
+            <option value="other">Other</option>
+          </select> <br />
+        </label>
+        <label for="">Instructions:<br /><textarea name="cocktailInstructions" rows="8" cols="40" id="cocktailInstructions">Enter mixing instructions here.</textarea></label><br/>
+        <button type="submit" name="submitCocktail">Submit</button>
+      </fieldset>
+    </form>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
   </body>
