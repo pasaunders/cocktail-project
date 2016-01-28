@@ -1,29 +1,84 @@
 .dataEntry {
   display: flex;
-  justify-content: space-around;
-  flex-flow: column;
+  justify-content: center;
   flex: auto;
+  flex-wrap: wrap;
 }
 .components {
-
+  background-image: url("../img/bigLiquor.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 65%;
+  background-color: #f5f5f5;
+  background-attachment: fixed;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin: 10px;
+  align-items: center;
+  flex-direction: column;
 }
-.recipe{
-  justify-content: space-around;
+.componentSubArticle {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.recipe {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/bigLiquor.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 65%;
+  background-color: #f5f5f5;
+  background-attachment: fixed;
+  width: 45%;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 10px;
+  align-items: center;
 }
 .name {
   display: flex;
   justify-content: center;
 }
-.cocktailIngredients {
-  display: inline-flex;
-  flex-flow: column;
-  flex-grow: 1;
-}
-.cocktailAmounts {
-  display: inline-flex;
-  flex-flow: column;
-  flex-grow: 1;
+.ingredientContainer {
+  display: flex;
+  justify-content: center;
 }
 .categoryLabel {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+.cocktailIngredient {
+    display: flex;
+    width: 90%;
+}
+.ingredientAmount {
+  display: flex;
+  width: 90%;
+}
+.triviaContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.trivia {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.instructions {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}
+.submitButton {
+  max-width: 60px;
 }

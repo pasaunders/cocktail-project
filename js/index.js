@@ -59,10 +59,15 @@ function enterCocktailSubmit(event) {
     drinkIngredientArray[i][1] = amountArray[i];
   }
   console.log(drinkIngredientArray);
-  var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
+  var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, 'img/' + glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
+  // if (ingredientArray == []) {
+  //   console.log('no ingredients');
+  //   alert('Please enter ingredients');
+  //   break;
+  // }
   drinkArray.push(newDrink);
   updateDrinks();
-  document.getElementById('cocktail-entry').reset;
+  var fieldReset = document.getElementById('cocktail-entry');
+  fieldReset.reset();
 }
-loadIngredients();
 refreshIndex();
