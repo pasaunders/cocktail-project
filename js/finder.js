@@ -1,5 +1,4 @@
 'use strict';
-
 function compareIngredients(ingredients,drinks){
   for(var l=0; l < drinks.length; l++){
     drinks[l].percentMatch = 0;
@@ -105,6 +104,7 @@ function pullLocalStorage(){
   }
 }
 
+loadDrinks();
 pullLocalStorage();
 
 var sortRes = [];
@@ -118,3 +118,5 @@ var screenerSelect = document.getElementById('selector');
 screenerSelect.addEventListener('change', screener);
 var categorySelect = document.getElementById('category');
 categorySelect.addEventListener('change', screener);
+// var categorySelect = document.getElementById('resultAmount');
+// categorySelect.addEventListener('change', resultAmount);
