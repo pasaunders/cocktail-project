@@ -32,12 +32,15 @@ function renderDrink(drinkObj){
   idCont.appendChild(img);
   idCont.appendChild(title);
 
-  var haveIng = divCell(cell);
+  var mismatchCell = divCell(cell)
+  mismatchCell.className = 'mismatch';
+
+  var haveIng = divCell(mismatchCell);
   var haveText = document.createElement('p');
   haveText.className = 'ingTitle'
   haveText.textContent = 'Matching Ingredients:';
   haveIng.appendChild(haveText);
-  var missIng = divCell(cell);
+  var missIng = divCell(mismatchCell);
   var missText = document.createElement('p');
   missText.className = 'ingTitle'
   missText.textContent = 'Missing Ingredients:'
@@ -68,26 +71,47 @@ function renderDrink(drinkObj){
 }
 function imgListener(img, drinkObj, cell){
   var imgOpen = false;
-  var descCell;
-  var descTitle;
+  var bufferCell;
   img.addEventListener('click', function(){
     if (!imgOpen){
       imgOpen = true;
-      descCell = divCell(cell);
+
+      bufferCell = divCell(cell);
+      bufferCell.className = 'buffer';
+
+      var ingCell = divCell(bufferCell); // Render Ingredients
+      ingCell.className = 'ingCell';
+      var ingTitle = document.createElement('p');
+      ingTitle.textContent = 'Ingredients:'
+      ingTitle.className = 'ingTitle';
+      ingCell.appendChild(ingTitle);
+      var ingList = document.createElement('ul');
+      ingList.className = 'descText';
+      ingCell.appendChild(ingList);
+      fillIngList(ingList, drinkObj); // Fill ingredient list
+
+      var descCell = divCell(bufferCell); // Render Description
       descCell.className = 'descCell';
-      descTitle = document.createElement('p');
+      var descTitle = document.createElement('p');
       descTitle.textContent = 'Recipe Description:'
       descTitle.className = 'ingTitle';
       descCell.appendChild(descTitle);
-
       var description = document.createElement('p');
       description.textContent = drinkObj.drinkRecipe;
       description.className = 'descText';
       descCell.appendChild(description);
+
     } else {
-      cell.removeChild(descCell);
+      cell.removeChild(bufferCell);
       imgOpen = false;
     }
+  })
+}
+function fillIngList(target, objRef){
+  objRef.ingredients.forEach(function(ingArrRef){
+    var listEntry = document.createElement('li');
+    listEntry.textContent = ingArrRef[0] + ', ' + ingArrRef[1];
+    target.appendChild(listEntry);
   })
 }
 function refreshDrinks(array){
