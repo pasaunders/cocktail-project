@@ -4,7 +4,12 @@
   justify-content: center;
 }
 .contentDiv {
-  background-color: #f7f4f0;
+  background-image: url("../img/bigLiquor.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 65%;
+  background-color: #f5f5f5;
+  background-attachment: fixed;
   width: 90%;
   display: flex;
   justify-content: center;
@@ -13,6 +18,7 @@
   flex-wrap: wrap;
 }
 .drinkDiv{
+  opacity: 0.88;
   background-color: white;
   width: 80%;
   border: 1px solid black;
@@ -70,7 +76,19 @@
   display: block;
 }
 .descCell {
-  width: 100%;
+  background-color: #f4f0e5;
+  width: 65%;
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ingCell {
+  background-color: #f4f0e5;
+  width: 25%;
   margin: 8px;
   padding: 8px;
   border: 1px solid black;
@@ -89,4 +107,14 @@
 }
 .descText{
   font: 14px Georgia, serif
+}
+.mismatch{
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+.buffer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
