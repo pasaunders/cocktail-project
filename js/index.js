@@ -6,14 +6,10 @@ var cocktailEntry = document.getElementById('cocktail-entry');
 cocktailEntry.addEventListener('submit', enterCocktailSubmit);
 
 function enterIngredientSubmit(event) {  //am I properly passing information thorugh here?
-  console.log(event.target.ingredientList.value);
-  event.preventDefault();
   var ingredientsAvailable = event.target.ingredientList.value.split(', '); //this should take the text box entry and split it at each comma into individual strings.
   event.target.ingredientList.value = null;
-  console.log(ingredientsAvailable);
   for (var i = 0; i < ingredientsAvailable.length; i++) {
     var newIngredient = new ingredient(ingredientsAvailable[i]);
-    console.log(ingArray);
     ingArray.push(newIngredient);
   }
   updateIngredients();
@@ -22,7 +18,6 @@ function enterIngredientSubmit(event) {  //am I properly passing information tho
 
 
 function enterCocktailSubmit(event) {
-  console.log(event);
   event.preventDefault();
   var name = document.getElementById('cocktail-name');
   var ingredient = document.getElementsByClassName('cocktailIngredient');
@@ -37,7 +32,6 @@ function enterCocktailSubmit(event) {
       categoryValue.push(category[i].value);
     }
   }
-  console.log('categories chosen: ' + categoryValue);
   var ingredientArray = [];
   var amountArray = [];
   Array.prototype.forEach.call(ingredient, function(e) {
@@ -50,20 +44,18 @@ function enterCocktailSubmit(event) {
       amountArray.push(e.value)
     }
   });
-  console.log(ingredientArray);
-  console.log(amountArray);
   var drinkIngredientArray = [];
   for (var i = 0; i < ingredientArray.length; i++) {
     drinkIngredientArray.push([]);
     drinkIngredientArray[i][0] = ingredientArray[i];
     drinkIngredientArray[i][1] = amountArray[i];
   }
-  console.log(drinkIngredientArray);
   var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, 'img/' + glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
-  console.log(ingredientArray[1]);
-  if (ingredientArray[1] === false) {
-    console.log('no ingredients');
+  if (!ingredientArray[0]) {
     return alert('Please enter ingredients');
+  }
+  if (!categoryValue[0]) {
+    return alert('We need a category. At least choose other.')
   }
   drinkArray.push(newDrink);
   updateDrinks();
