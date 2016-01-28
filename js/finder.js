@@ -1,5 +1,4 @@
 'use strict';
-var userIngredients = ['Vodka','Coffee','Whiskey','Brown Sugar','Tequila','Triple Sec','Salt'];
 
 function compareIngredients(ingredients,drinks){
   for(var l=0; l < drinks.length; l++){
@@ -9,7 +8,7 @@ function compareIngredients(ingredients,drinks){
   for(var i = 0; i < drinks.length; i++){
       for(var j = 0; j < ingredients.length; j++){
         for(var k = 0; k < drinks[i].ingredients.length; k++){
-          if(ingredients[j].toLowerCase() === drinks[i].ingredients[k][0].toLowerCase()){
+          if(ingredients[j].ingName.toLowerCase() === drinks[i].ingredients[k][0].toLowerCase()){
             drinks[i].match += 1;
           }
         }
@@ -75,14 +74,14 @@ function clearDrinks(){
 }
 
 function byIngredient(){
-  compareIngredients(userIngredients, drinkArray);
+  compareIngredients(ingArray, drinkArray);
   sortRes = sortByMatch(drinkArray);
   refreshDrinks(sortRes);
 }
 
 function randomDrink(){
   var drinkSelect = Math.floor(Math.random() * drinkArray.length);
-  compareIngredients(userIngredients, drinkArray);
+  compareIngredients(ingArray, drinkArray);
   sortRes = sortByMatch(drinkArray,1);
   refreshDrinks(sortRes);
 }
@@ -91,10 +90,22 @@ function screener(){
   var screenBy = screenerSelect.value;
   var categorizeBy = categorySelect.value;
   var drinksScreened = screenedDrinks(drinkArray,screenBy,categorizeBy);
-  drinksScreened = compareIngredients(userIngredients, drinksScreened);
+  drinksScreened = compareIngredients(ingArray, drinksScreened);
   sortRes = sortByMatch(drinksScreened);
   refreshDrinks(sortRes);
 }
+
+function pullLocalStorage(){
+  var ingData = localStorage.getItem('ingData');
+  if (ingData) {
+    ingArray = JSON.parse(ingData);
+  } else {
+    console.log('Local storage empty!! Initializing!');
+    localStorage.setItem('ingData', JSON.stringify(ingArray));
+  }
+}
+
+pullLocalStorage();
 
 var sortRes = [];
 var drinkByIngredients = document.getElementById('drinkByIng');
