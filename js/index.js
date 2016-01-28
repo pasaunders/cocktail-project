@@ -60,11 +60,11 @@ function enterCocktailSubmit(event) {
   }
   console.log(drinkIngredientArray);
   var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, 'img/' + glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
-  // if (ingredientArray == []) {
-  //   console.log('no ingredients');
-  //   alert('Please enter ingredients');
-  //   break;
-  // }
+  console.log(ingredientArray[1]);
+  if (ingredientArray[1] === false) {
+    console.log('no ingredients');
+    return alert('Please enter ingredients');
+  }
   drinkArray.push(newDrink);
   updateDrinks();
   var fieldReset = document.getElementById('cocktail-entry');
