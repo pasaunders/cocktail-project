@@ -20,12 +20,17 @@ function compareIngredients(ingredients,drinks){
 function sortByMatch(drinks,amount){
   var drinkSort = [];
   var sortedDrinkArray = [];
-  if(amount){
-    for(var i = 0; i < amount; i++){
-      var drinkSelect = Math.floor(Math.random() * drinkArray.length);
-      drinkSort.push([drinkSelect,drinks[i].percentMatch]);
-    }
-    drinkSort.sort(function(a,b){return b[1]-a[1]});
+  if(amount > 0 || amount === 'random'){
+    if(amount === 'random'){
+        var drinkSelect = Math.floor(Math.random() * drinkArray.length);
+        drinkSort.push([drinkSelect,drinks[drinkSelect].percentMatch]);
+        drinkSort.sort(function(a,b){return b[1]-a[1]});
+      } else {
+        for(var i = 0; i < amount; i++){
+          drinkSort.push([i,drinks[i].percentMatch]);
+        }
+        drinkSort.sort(function(a,b){return b[1]-a[1]});
+      }
   } else{
     for(var i = 0; i < drinks.length; i++){
       drinkSort.push([i,drinks[i].percentMatch]);
@@ -40,7 +45,6 @@ function sortByMatch(drinks,amount){
 
 function screenedDrinks(drinks,liquor,category){
   var drinksScreened = [];
-  console.log(liquor, category);
   if(liquor !== 'default' && category !=='default'){
     for(var i = 0; i < drinks.length; i++){
       var count = 0;
@@ -74,14 +78,14 @@ function clearDrinks(){
 
 function byIngredient(){
   compareIngredients(ingArray, drinkArray);
-  sortRes = sortByMatch(drinkArray);
+  sortRes = sortByMatch(drinkArray,amount);
   refreshDrinks(sortRes);
 }
 
 function randomDrink(){
   var drinkSelect = Math.floor(Math.random() * drinkArray.length);
   compareIngredients(ingArray, drinkArray);
-  sortRes = sortByMatch(drinkArray,1);
+  sortRes = sortByMatch(drinkArray,'random');
   refreshDrinks(sortRes);
 }
 
@@ -90,7 +94,7 @@ function screener(){
   var categorizeBy = categorySelect.value;
   var drinksScreened = screenedDrinks(drinkArray,screenBy,categorizeBy);
   drinksScreened = compareIngredients(ingArray, drinksScreened);
-  sortRes = sortByMatch(drinksScreened);
+  sortRes = sortByMatch(drinksScreened,amount);
   refreshDrinks(sortRes);
 }
 
@@ -102,6 +106,11 @@ function pullLocalStorage(){
     console.log('Local storage empty!! Initializing!');
     localStorage.setItem('ingData', JSON.stringify(ingArray));
   }
+}
+
+var amount = 'all';
+function displayAmount(){
+  amount = parseInt(resultAmount.value);
 }
 
 loadDrinks();
@@ -118,5 +127,5 @@ var screenerSelect = document.getElementById('selector');
 screenerSelect.addEventListener('change', screener);
 var categorySelect = document.getElementById('category');
 categorySelect.addEventListener('change', screener);
-// var categorySelect = document.getElementById('resultAmount');
-// categorySelect.addEventListener('change', resultAmount);
+var displayQuantity = document.getElementById('resultAmount');
+displayQuantity.addEventListener('change', displayAmount);
