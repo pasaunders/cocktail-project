@@ -19,20 +19,8 @@ function ingredient(ingName, image, substitutes){
 
 var base = new Firebase("https://glaring-heat-8547.firebaseio.com"); // Link to the firebase!
 var drinksDir = base.child("drinks");
-var drinkArray = ['thing'];
+var drinkArray = [];
 var ingArray = [];
-
-var drinkArray = [  // This array holds objects for every drink ever entered into the database!
-    new drinkRecipe('Screwdriver',[['Vodka','1.5 oz'],['Orange juice','6 oz']],'highball','img/screwdriver.jpg',['cold'],'vodka',''),
-    new drinkRecipe('Margarita',[['Tequila','1.5 oz'],['Triple sec','1.5 oz'],['Lime juice','1-1.25 oz'],['Salt','on the rim of the glass']],'margarita','img/margarita.jpg',['cold'],'tequila',''),
-    new drinkRecipe('Irish Coffee',[['Whiskey','1.5 oz'],['Coffee','1 cup'],['Brown sugar','1 tablespoon']],'Irish Coffee','img/irish.jpg',['hot'],'whiskey',''),
-    new drinkRecipe('Mimosa',[['champagne','1/3 cup'],['orange juice','1/3 cup'],['triple sec','1 tablespoon (optional)']],'flute','img/mimosa.jpg',['cold'],'champagne','')
-  ];
-// var ingArray = [ // This array holds objects for every ingredient the user has in their
-// 		new ingredient('Vodka', 'img/vodka.jpg', ''),
-// 		new ingredient('Rum', 'img/rum.jpg', ''),
-// 		new ingredient('Whiskey', 'img/whiskey.jpg', '')
-// ];
 
 function loadDrinks(){ // Adds all drinks stored in the database to the current instance.
 	base.on("value", function(snapshot) {
@@ -53,7 +41,24 @@ function updateDrinks(){ // For all drink obects, if drinkName is not present in
 		var match = false; // Haven't found a match for the drink yet, so this is false
 		drinkArray.forEach(function(drink){ // For each of the user's drinks
 			for (var cloudDrink in tempObj.drinks){ // For each drink in the firebase
-				if (drink.drinkName === tempObj.drinks[cloudDrink].drinkName){match = true;} // If there's a match, set match = true
+				if (drink.drinkName === tempObj.drinks[cloudDrink].drinkName){
+					match = true;
+					if (drink.imageProperty !== tempObj.drinks[cloudDrink].imageProperty){
+						var modRef = drinksDir.child(cloudDrink);
+						modRef.update({imageProperty: drink.imageProperty});
+						console.log('User changed the image for ' + drink.drinkName);
+					};
+					// if (drink.drinkRecipe !== tempObj.drinks[cloudDrink].drinkRecipe){
+					// 	var modRef = drinksDir.child(cloudDrink);
+					// 	modRef.update({drinkRecipe: drink.drinkRecipe});
+					// 	console.log('User changed the recipe for ' + drink.drinkName);
+					// };
+					// if (drink.ingredients !== tempObj.drinks[cloudDrink].ingredients){
+					// 	var modRef = drinksDir.child(cloudDrink);
+					// 	modRef.update({ingredients: drink.ingredients});
+					// 	console.log('User changed the ingredients for ' + drink.drinkName);
+					// };
+				} // If there's a match, set match = true
 			}
 			if (match){ // if maych is true, it matched one of the drinks in the database
 				console.log(drink.drinkName + ' is already in the database!') // and so already exists
@@ -111,9 +116,9 @@ function delIngredient(ingID){ // Removes ingredient with a string matching ingN
 };
 
 // drinksDir.set(drinkArray);
-// loadDrinks();
+loadDrinks();
 // updateDrinks();
-// loadIngredients();
+loadIngredients();
 // updateIngredients();
 
 // delDrink('screwdRiver');
