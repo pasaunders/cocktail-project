@@ -53,7 +53,13 @@ function updateDrinks(){ // For all drink obects, if drinkName is not present in
 		var match = false; // Haven't found a match for the drink yet, so this is false
 		drinkArray.forEach(function(drink){ // For each of the user's drinks
 			for (var cloudDrink in tempObj.drinks){ // For each drink in the firebase
-				if (drink.drinkName === tempObj.drinks[cloudDrink].drinkName){match = true;} // If there's a match, set match = true
+				if (drink.drinkName === tempObj.drinks[cloudDrink].drinkName){
+					match = true;
+					if (drink.imageProperty !== tempObj.drinks[cloudDrink].imageProperty){
+						var modRef = drinksDir.child(cloudDrink);
+						modRef.update({imageProperty: drink.imageProperty});
+					};
+				} // If there's a match, set match = true
 			}
 			if (match){ // if maych is true, it matched one of the drinks in the database
 				console.log(drink.drinkName + ' is already in the database!') // and so already exists

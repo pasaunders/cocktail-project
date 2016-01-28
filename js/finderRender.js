@@ -111,6 +111,7 @@ function imgListener(img, drinkObj, cell){
       subEl.addEventListener('click', function(){
         drinkObj.imageProperty = imgEl.value
         imgEl.value = '';
+        updateDrinks();
         refreshDrinks(drinkArray);
       })
       descCell.appendChild(subEl);
