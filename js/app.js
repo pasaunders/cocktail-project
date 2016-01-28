@@ -38,7 +38,10 @@ function loadDrinks(){ // Adds all drinks stored in the database to the current 
 	base.on("value", function(snapshot) {
   	console.log('Setting the user\'s drinks to the database drink contents!');
 		var tempObj = snapshot.val();
-		drinkArray = [tempObj.drinks];
+		drinkArray = [];
+		for (var cloudDrink in tempObj.drinks){
+			drinkArray.push(tempObj.drinks[cloudDrink]);
+		}
 	}, function (errorObject) {
   console.log("The firebase read failed: " + errorObject.code);
 	});
