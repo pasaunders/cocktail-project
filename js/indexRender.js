@@ -23,6 +23,7 @@ function divCell(target){
 function renderIng(ingredientID){
   var img = document.createElement('img');
   img.setAttribute('src', ingredientID.image);
+  if (!ingredientID.image){img.setAttribute('src', 'img/missing.jpg');}
   img.className = 'ingIcon';
 
   var cell = makeCell();
