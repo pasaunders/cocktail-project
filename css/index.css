@@ -1,3 +1,27 @@
-/*.dataEntry {
+.dataEntry {
+  display: flex;
+  justify-content: space-around;
+}
+.components {
+
+}
+.recipe{
+  justify-content: space-around;
+}
+.name {
+  display: flex;
+  justify-content: center;
+}
+.cocktailIngredients {
   display: inline-flex;
-}*/
+  flex-flow: column;
+  flex-grow: 1;
+}
+.cocktailAmounts {
+  display: inline-flex;
+  flex-flow: column;
+  flex-grow: 1;
+}
+.categoryLabel {
+  display: flex;
+}
