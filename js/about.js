@@ -1,77 +1,68 @@
-var button = document.getElementById('trivButton');
-var result1 = document.getElementById('res1');
-var result2 = document.getElementById('res2');
-var result3 = document.getElementById('res3');
-var result4 = document.getElementById('res4');
-var result5 = document.getElementById('res5');
 var counter = 0;
+var scoreBut = document.getElementById('scoreButton');
+var score = document.getElementById('score');
+ 
+var result1 = document.getElementById('res1');
+var result1a = document.getElementById('res1a');
+var answer1 = document.getElementById('ans1');
 
-button.addEventListener('click', function() { 
-prompt('Cocktail Triva! These will be Truth or False questions!');
-questionOne();
-questionTwo();
-questionThree();
-questionFour();
-questionFive();
+result1.addEventListener('click', function() {
+    ans1.textContent = 'Wrong, next question!';
+});
+result1a.addEventListener('click', function() {
+  ans1.textContent = "You're correct!"
+    counter += 1;
 });
 
-function questionOne(){
-  var answer1 = prompt('Question #1: A person cannot die from alcohol poisoning in one sitting, it takes months of heavy drinking for it to kill them.');
-  if(answer1.toUpperCase() === 'F' || answer1.toUpperCase() === 'FALSE') {
-    res1.textContent = "You're correct!";
-    counter += 1;
-  } else if (answer1.toUpperCase() === 'T' || answer1.toUpperCase()=== 'TRUE') {
-    res1.textContent = 'Wrong, next question!';
-  } else {
-    res1.textContent = 'Wrong, out of scope!';
-  }
-}
+var result2 = document.getElementById('res2');
+var result2a = document.getElementById('res2a');
+var answer2 = document.getElementById('ans2');
 
-function questionTwo(){
-  var answer2 = prompt('Question #2: Some foods can absorb alcohol.');
-  if(answer2.toUpperCase() === 'F' || answer2.toUpperCase() === 'FALSE') {
-    res2.textContent = "You're right. Food can delay alcohol absorption, but wont prevent it from getting into the bloodstream";
+result2.addEventListener('click', function() {
+    ans2.textContent = 'Wrong answer, next question!'
+});
+result2a.addEventListener('click', function() {
+  ans2.textContent = "You're right. Food can delay alcohol absorption, but wont prevent it from getting into the bloodstream.";'Wrong answer, next question!'
     counter += 1;
-  } else if (answer2.toUpperCase() === 'T' || answer2.toUpperCase() === 'TRUE') {
-    res2.textContent = 'Wrong answer, next question!';
-  } else {
-    res2.textContent = 'Wrong, out of scope!';
-  }
-}
+});
 
-function questionThree(){
-  var answer3 = prompt('Question #3: Alcohol affects men and women differently.');
-  if(answer3.toUpperCase() === 'T' || answer3.toUpperCase() === 'TRUE') {
-    res3.textContent = 'Correct, body weight differences impact the rate alcohol is metabolized.';
-    counter += 1;
-  } else if (answer3.toUpperCase() === 'F' || answer3.toUpperCase() === 'FALSE') {
-    res3.textContent = 'Wrong, next question!';
-  } else {
-    res3.textContent = 'Wrong, out of scope!';
-  }
-}
+var result3 = document.getElementById('res3');
+var result3a = document.getElementById('res3a');
+var answer3 = document.getElementById('ans3');
 
-function questionFour(){
-  var answer4 = prompt('Question #4: The Manhattan cocktail contains vodka.');
-  if(answer4.toUpperCase() === 'F' || answer4.toUpperCase() === 'FALSE') {
-    res4.textContent = "You're correct!";
+result3.addEventListener('click', function() {
+    ans3.textContent = 'Correct, body weight differences impact the rate alcohol is metabolized.';
     counter += 1;
-  } else if (answer4.toUpperCase() === 'T' || answer4.toUpperCase() === 'TRUE') {
-    res4.textContent = 'Wrong!';
-  } else {
-    res4.textContent = 'Wrong, out of scope!';
-  }
-}
+});
+result3a.addEventListener('click', function() {
+  ans3.textContent = 'Wrong, next question!';
+});
 
-function questionFive(){
-  var answer5 = prompt('Question #5: A Bloody Mary cocktail contains both Worcestershire Sauce and Tomato Sauce.');
-  if(answer5.toUpperCase() === 'F' || answer5.toUpperCase() === 'FALSE') {
-    res5.textContent = "You're correct!";
+var result4 = document.getElementById('res4');
+var result4a = document.getElementById('res4a');
+var answer4 = document.getElementById('ans4');
+
+result4.addEventListener('click', function() {
+    ans4.textContent = 'Wrong!';
+});
+result4a.addEventListener('click', function() {
+  ans4.textContent = "You're correct!";
     counter += 1;
-  } else if (answer5.toUpperCase() === 'T' || answer5.toUpperCase() === 'TRUE') {
-    res5.textContent ='Wrong!';
-  } else {
-    res5.textContent ='Wrong, out of scope!';
-  }
-}
+});
+
+var result5 = document.getElementById('res5');
+var result5a = document.getElementById('res5a');
+var answer5 = document.getElementById('ans5');
+
+result5.addEventListener('click', function() {
+    ans5.textContent = 'Wrong!';
+    counter += 1;
+});
+result5a.addEventListener('click', function() {
+  ans5.textContent = "You're correct!";
+});
+
+scoreBut.addEventListener('click', function() {
+  score.textContent = 'You got ' + counter + ' out of 5 right'
+});
 
