@@ -1,6 +1,8 @@
 .dataEntry {
   display: flex;
   justify-content: space-around;
+  flex-flow: column;
+  flex: auto;
 }
 .components {
 

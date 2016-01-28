@@ -17,6 +17,7 @@ function enterIngredientSubmit(event) {  //am I properly passing information tho
     ingArray.push(newIngredient);
   }
   updateIngredients();
+  refreshIndex();
 }
 
 
@@ -59,11 +60,9 @@ function enterCocktailSubmit(event) {
   }
   console.log(drinkIngredientArray);
   var newDrink = new drinkRecipe (name.value, drinkIngredientArray, glassware.value, glassware.value + '.jpg', categoryValue, liquor.value, instructions.value);
-    drinkArray.push(newDrink);
-  for (var i = 0; i < drinkIngredientArray.length; i++) {
-    //when loading info to the object, load the drinkIngredientArray entries here
-  }
+  drinkArray.push(newDrink);
+  updateDrinks();
   document.getElementById('cocktail-entry').reset;
 }
-
+loadIngredients();
 refreshIndex();
