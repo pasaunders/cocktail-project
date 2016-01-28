@@ -25,6 +25,38 @@ h2 {
    color: #E5E4E2;
 }
 
+button {
+position: relative;
+left: 43%;  
+/*margin-right: -50%;*/
+padding: 10px 20px 11px;
+font-size: 21px;
+background-color: #913915;
+font-weight: bold;
+text-shadow: 1px 1px #913915;
+color: #ffffff;
+border-radius: 100px;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px;
+border: 1px solid #913915;
+cursor: pointer;
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+button:hover {
+text-decoration: none;
+color: #e25b23;
+}
+
+.scorebutt {
+padding: 20px 20px 11px;
+position: relative;
+left: 2%;    
+}
+
+
+
  .name {
   font-family: 'Quicksand', sans-serif;
   color: #913915;
