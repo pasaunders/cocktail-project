@@ -28,17 +28,20 @@ var drinkArray = [  // This array holds objects for every drink ever entered int
     new drinkRecipe('Irish Coffee',[['Whiskey','1.5 oz'],['Coffee','1 cup'],['Brown sugar','1 tablespoon']],'Irish Coffee','img/irish.jpg',['hot'],'whiskey',''),
     new drinkRecipe('Mimosa',[['champagne','1/3 cup'],['orange juice','1/3 cup'],['triple sec','1 tablespoon (optional)']],'flute','img/mimosa.jpg',['cold'],'champagne','')
   ];
-var ingArray = [ // This array holds objects for every ingredient the user has in their
-		new ingredient('Vodka', 'img/vodka.jpg', ''),
-		new ingredient('Rum', 'img/rum.jpg', ''),
-		new ingredient('Whiskey', 'img/whiskey.jpg', '')
-];
+// var ingArray = [ // This array holds objects for every ingredient the user has in their
+// 		new ingredient('Vodka', 'img/vodka.jpg', ''),
+// 		new ingredient('Rum', 'img/rum.jpg', ''),
+// 		new ingredient('Whiskey', 'img/whiskey.jpg', '')
+// ];
 
 function loadDrinks(){ // Adds all drinks stored in the database to the current instance.
 	base.on("value", function(snapshot) {
   	console.log('Setting the user\'s drinks to the database drink contents!');
 		var tempObj = snapshot.val();
-		drinkArray = [tempObj.drinks];
+		drinkArray = [];
+		for (var cloudDrink in tempObj.drinks){
+			drinkArray.push(tempObj.drinks[cloudDrink]);
+		}
 	}, function (errorObject) {
   console.log("The firebase read failed: " + errorObject.code);
 	});
