@@ -20,8 +20,10 @@ function compareIngredients(ingredients,drinks){
 function sortByMatch(drinks,amount){
   var drinkSort = [];
   var sortedDrinkArray = [];
-  if((amount > 0 || amount === 'random') && amount <=drinks.length){
-    if(amount === 'random'){
+  console.log(amount)
+  if((amount > 0 || amount =='random') && amount <=drinks.length){
+    if(amount === 1){
+      console.log('random');
         var drinkSelect = Math.floor(Math.random() * drinkArray.length);
         drinkSort.push([drinkSelect,drinks[drinkSelect].percentMatch]);
         drinkSort.sort(function(a,b){return b[1]-a[1]});
@@ -85,7 +87,7 @@ function byIngredient(){
 function randomDrink(){
   var drinkSelect = Math.floor(Math.random() * drinkArray.length);
   compareIngredients(ingArray, drinkArray);
-  sortRes = sortByMatch(drinkArray,'random');
+  sortRes = sortByMatch(drinkArray,1);
   refreshDrinks(sortRes);
 }
 
