@@ -1,20 +1,20 @@
 'use strict';
 
-var ingredientsEntry = document.getElementById('ingredients-entry');
-ingredientsEntry.addEventListener('submit', enterIngredientSubmit);
-var cocktailEntry = document.getElementById('cocktail-entry');
-cocktailEntry.addEventListener('submit', enterCocktailSubmit);
+var ingredientsEntry = document.getElementById('submit-ingredients');
+var cocktailEntry = document.getElementById('submit-cocktail');
+cocktailEntry.addEventListener('click', enterCocktailSubmit);
 
-function enterIngredientSubmit(event) {  //am I properly passing information thorugh here?
-  var ingredientsAvailable = event.target.ingredientList.value.split(', '); //this should take the text box entry and split it at each comma into individual strings.
-  event.target.ingredientList.value = null;
+ingredientsEntry.addEventListener('click', function(){  //am I properly passing information thorugh here?
+  var ingredientRef = document.getElementById('ingredientList');
+  var ingredientsAvailable = ingredientRef.value.split(', '); //this should take the text box entry and split it at each comma into individual strings.
+  ingredientRef.value = 'Enter ingredients here, separated by commas.';
   for (var i = 0; i < ingredientsAvailable.length; i++) {
     var newIngredient = new ingredient(ingredientsAvailable[i]);
     ingArray.push(newIngredient);
   }
   updateIngredients();
   refreshIndex();
-}
+})
 
 
 function enterCocktailSubmit(event) {
