@@ -55,7 +55,7 @@ function enterCocktailSubmit(event) {
     return alert('Please enter ingredients');
   }
   if (!categoryValue[0]) {
-    return alert('We need a category. At least choose other.')
+    return alert('We need a category. At least choose hot or cold.')
   }
   drinkArray.push(newDrink);
   updateDrinks();
