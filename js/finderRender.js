@@ -23,6 +23,8 @@ function divCell(target){
 function renderDrink(drinkObj){
   var img = document.createElement('img');
   img.setAttribute('src', drinkObj.imageProperty);
+  console.log(drinkObj.imageProperty);
+  if (!drinkObj.imageProperty){img.setAttribute('src', 'img/missingDrink.jpg');}
   img.className = 'ingIcon';
   var cell = makeCell();
   var idCont = divCell(cell);
