@@ -13,7 +13,7 @@ function enterIngredientSubmit(event) {  //am I properly passing information tho
     ingArray.push(newIngredient);
   }
   updateIngredients();
-  refreshIndex();
+  // refreshIndex();
 }
 
 
