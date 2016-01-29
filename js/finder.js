@@ -49,9 +49,11 @@ function screenedDrinks(drinks,liquor,category){
   var drinksScreened = [];
   if(liquor !== 'default' && category !=='default'){
     for(var i = 0; i < drinks.length; i++){
-      var count = 0;
+      var countTwoMatch = 0;
+      var countOneMatch = 0;
       for(var j = 0; j < drinks[i].category.length; j++){
-        if (drinks[i].baseLiquior.toLowerCase() === liquor.toLowerCase() && drinks[i].category[j].toLowerCase() === category.toLowerCase() && count === 0){
+        console.log(drinks[i].baseLiquior, drinks[i].category[j], i, j, count)
+        if (drinks[i].baseLiquior.toLowerCase() === liquor.toLowerCase() && drinks[i].category[j].toLowerCase() === category.toLowerCase() && countTwoMatch === 0){
             drinksScreened.push(drinks[i]);}
             count += 1;
           }
@@ -65,7 +67,7 @@ function screenedDrinks(drinks,liquor,category){
   for(var i = 0; i < drinks.length; i++){
     var count = 0;
     for(var j = 0; j < drinks[i].category.length; j++){
-      if(drinks[i].category[j].toLowerCase() === category.toLowerCase() && count === 0){
+      if(drinks[i].category[j].toLowerCase() === category.toLowerCase() && countOneMatch === 0){
       drinksScreened.push(drinks[i]);
       count += 1;}
       }
