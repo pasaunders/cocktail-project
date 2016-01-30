@@ -16,6 +16,10 @@
   font-family: 'Quicksand', sans-serif;
   color: #913915;
 }
+.current{
+  text-decoration: underline;
+  color: #5d230d;
+}
 a {
   text-decoration: none;
   color: #913915;

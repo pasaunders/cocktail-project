@@ -39,6 +39,9 @@ function renderIng(ingredientID){
   delButton.className = 'delButton';
   delButton.setAttribute('src', 'img/delIcon.png');
 
+  delButton.addEventListener('mouseover', function(){
+    this.setAttribute('src', 'img/delOver.png');
+  })
   delButton.addEventListener('click', function(){
     layout.content.removeChild(cell);
     delIngredient(ingredientID.ingName);

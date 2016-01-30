@@ -23,7 +23,6 @@ function divCell(target){
 function renderDrink(drinkObj){
   var img = document.createElement('img');
   img.setAttribute('src', drinkObj.imageProperty);
-  console.log(drinkObj.imageProperty);
   if (!drinkObj.imageProperty){img.setAttribute('src', 'img/missingDrink.jpg');}
   img.className = 'ingIcon';
   var cell = makeCell();
@@ -64,6 +63,8 @@ function renderDrink(drinkObj){
   var delButton = document.createElement('img');
   delButton.className = 'delButton';
   delButton.setAttribute('src', 'img/delIcon.png');
+  delButton.addEventListener('mouseover', function(){this.setAttribute('src', 'img/delOver.png');})
+  delButton.addEventListener('mouseout', function(){this.setAttribute('src', 'img/delIcon.png');})
   delButton.addEventListener('click', function(){
     layout.content.removeChild(cell);
     // delDrink(drinkObj.drinkName);
