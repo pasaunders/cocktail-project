@@ -117,7 +117,6 @@ function displayAmount(){
   amount = parseInt(resultAmount.value);
 }
 
-loadDrinks();
 pullLocalStorage();
 
 var sortRes = [];
