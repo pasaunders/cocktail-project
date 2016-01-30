@@ -73,6 +73,7 @@ function updateDrinks(){ // For all drink obects, if drinkName is not present in
 function loadIngredients(){ // Adds all ingredients stored in local-data to the current instance.
 	var tempArray = JSON.parse(localStorage.getItem('ingData'));
 	if (tempArray){
+		console.log(tempArray);
 		console.log('Getting ingredient info from local storage..')
 		ingArray = tempArray;
 	} else {
